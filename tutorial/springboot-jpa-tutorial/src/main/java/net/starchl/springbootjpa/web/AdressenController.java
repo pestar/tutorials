@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,13 +64,15 @@ public class AdressenController {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
-	public void updateAdresse(@RequestBody Adresse adr) {
+	public ResponseEntity<String> updateAdresse(@RequestBody Adresse adr) {
 		service.saveAdresse(adr);
+		return new ResponseEntity<String>("Adresse update OK", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public void insertAdresse(@RequestBody Adresse adr) {
+	public ResponseEntity<String> insertAdresse(@RequestBody Adresse adr) {
 		service.saveAdresse(adr);
+		return new ResponseEntity<String>("Adresse insert OK", HttpStatus.OK);
 	}
 
 }

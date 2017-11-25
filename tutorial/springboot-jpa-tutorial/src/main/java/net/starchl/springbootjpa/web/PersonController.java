@@ -3,6 +3,8 @@ package net.starchl.springbootjpa.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,12 +59,14 @@ public class PersonController {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
-	public void updatePerson(@RequestBody Person p) {
+	public ResponseEntity<String> updatePerson(@RequestBody Person p) {
 		service.savePerson(p);
+		return new ResponseEntity<String>("Person update OK", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public void insertPerson(@RequestBody Person p) {
+	public ResponseEntity<String> insertPerson(@RequestBody Person p) {
 		service.savePerson(p);
+		return new ResponseEntity<String>("Person insert OK", HttpStatus.OK);
 	}
 }
