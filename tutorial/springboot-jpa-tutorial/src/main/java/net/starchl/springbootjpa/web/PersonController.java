@@ -45,17 +45,20 @@ public class PersonController {
 	}
 
 	@RequestMapping(value = "/add/{vorname}/{nachname}/{adressId}")
-	public void addPerson(@PathVariable String vorname, @PathVariable String nachname, @PathVariable long adressId) {
+	public ResponseEntity<String> addPerson(@PathVariable String vorname, @PathVariable String nachname,
+			@PathVariable long adressId) {
 		Person p = new Person();
 		p.setAdressId(adressId);
 		p.setNachname(nachname);
 		p.setVorname(vorname);
 		service.savePerson(p);
+		return new ResponseEntity<String>("Person add OK", HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/delete/{id}")
-	public void removePerson(@PathVariable long id) {
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> removePerson(@PathVariable long id) {
 		service.deletePerson(id);
+		return new ResponseEntity<String>("Person delete OK", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)

@@ -48,7 +48,7 @@ public class AdressenController {
 	}
 
 	@RequestMapping(value = "/add/{strasse}/{plz}/{ort}/{land}")
-	public void addAdresse(@PathVariable String strasse, @PathVariable String plz, @PathVariable String ort,
+	public ResponseEntity<String> addAdresse(@PathVariable String strasse, @PathVariable String plz, @PathVariable String ort,
 			@PathVariable String land) {
 		Adresse a = new Adresse();
 		a.setLand(land);
@@ -56,11 +56,13 @@ public class AdressenController {
 		a.setStrasse(strasse);
 		a.setPlz(plz);
 		service.saveAdresse(a);
+		return new ResponseEntity<String>("Adresse add OK", HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/delete/{id}")
-	public void removeAdresse(@PathVariable long id) {
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> removeAdresse(@PathVariable long id) {
 		service.deleteAdresse(id);
+		return new ResponseEntity<String>("Adresse delete OK", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
