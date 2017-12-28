@@ -9,15 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import io.swagger.annotations.ApiModelProperty;
-
 @Entity
 public class Person implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@ApiModelProperty(notes = "Von der Datenbank generierte Person ID")
 	@Id
 	@GeneratedValue
 	private long id;
@@ -32,11 +29,8 @@ public class Person implements Serializable {
 		this.adressId = adressId;
 	}
 
-	@ApiModelProperty(notes = "Feld Vorname Länge 100")
 	@Column(length = 100)
 	private String vorname;
-
-	@ApiModelProperty(notes = "Feld Nachname Länge 100")
 	@Column(length = 100)
 	private String nachname;
 
@@ -48,7 +42,6 @@ public class Person implements Serializable {
 		this.id = id;
 	}
 
-	@ApiModelProperty(notes = "Adressen ID Foreign Key -> adresse.adressId")
 	@ManyToOne
 	@JoinColumn(name = "adressId", insertable = false, updatable = false)
 	private Adresse adresse;

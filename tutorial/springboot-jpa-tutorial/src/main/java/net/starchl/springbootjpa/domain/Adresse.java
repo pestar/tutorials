@@ -7,31 +7,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import io.swagger.annotations.ApiModelProperty;
-
 @Entity
 public class Adresse implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@ApiModelProperty(notes = "Von der Datenbank generierte Adressen ID")
 	@Id
 	@GeneratedValue
 	private long id;
-
-	@ApiModelProperty(notes = "Feld Strasse Länge 100")
 	@Column(length = 100)
 	private String strasse;
-
-	@ApiModelProperty(notes = "Feld PLZ Länge 10")
 	@Column(length = 10)
 	private String plz;
-	@ApiModelProperty(notes = "Feld Ort Länge 100")
 	@Column(length = 100)
 	private String ort;
-
-	@ApiModelProperty(notes = "Feld Land Länge 100")
 	@Column(length = 100)
 	private String land;
 
