@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Kontakte</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<h:outputStylesheet name="css/styles.css" />
+</h:head>
+<h:body styleClass="body">
+
+	<h:panelGrid columns="2">
+		<h:graphicImage name="images/adressbuch.jpg" height="40" width="30" />
+		<h3>Adress Buch</h3>
+	</h:panelGrid>
+
+
+	<div id="divtabelle">
+		<h:form id="formtabelle">
+			<h:dataTable id="kontaktTabelle" value="#{kontaktctrl.kontakte}"
+				var="k" styleClass="tabelleKontakt"
+				headerClass="headerKontaktTabelle"
+				rowClasses="tabelleRowOdd,tabelleRowEven">
+				<h:column>
+					<f:facet name="header">ID</f:facet>
+				#{k.id}
+		</h:column>
+				<h:column>
+					<f:facet name="header">Vorname</f:facet>
+			#{k.vorname}
+		</h:column>
+				<h:column>
+					<f:facet name="header">Nachname</f:facet>
+			#{k.nachname}
+		</h:column>
+				<h:column>
+					<f:facet name="header">Titel</f:facet>
+			#{k.titel}
+		</h:column>
+				<h:column>
+					<f:facet name="header">Geburtsdatum</f:facet>
+			#{k.geburtsdatum}
+		</h:column>
+				<h:column>
+					<f:facet name="header">Strasse</f:facet>
+			#{k.strasse}
+		</h:column>
+				<h:column>
+					<f:facet name="header">Postleitzahl</f:facet>
+			#{k.plz}
+		</h:column>
+				<h:column>
+					<f:facet name="header">Ort</f:facet>
+			#{k.ort}
+		</h:column>
+				<h:column>
+					<f:facet name="header">Telefon</f:facet>
+			#{k.telefon}
+		</h:column>
+				<h:column>
+					<f:facet name="header">eMail</f:facet>
+			#{k.email}
+		</h:column>
+				<h:column>
+					<h:commandButton value="bearbeiten"
+						action="#{kontakt.editkontakt(k)}" styleClass="button" />
+				</h:column>
+				<h:column>
+					<h:commandButton value="löschen" action="#{kontakt.delete(k)}"
+						styleClass="button" />
+				</h:column>
+			</h:dataTable>
+		</h:form>
+
+		<hr />
+
+		<h:panelGrid id="pager" columns="6">
+			<h:outputLabel value="Anzahl Kontakte/Seite" />
+			<h:commandButton value="+" action="#{kontaktctrl.incAnzProSeite}"
+				styleClass="button">
+				<f:ajax render="formtabelle anzahlText" />
+			</h:commandButton>
+			<h:inputText id="anzahlText" readonly="true"
+				value="#{kontaktctrl.anzahlProSeite}" size="3" />
+			<h:commandButton value="-" action="#{kontaktctrl.decAnzProSeite}"
+				styleClass="button">
+				<f:ajax render="formtabelle anzahlText" />
+			</h:commandButton>
+			<h:commandButton value="zurück" action="#{kontaktctrl.vorher}"
+				styleClass="button">
+				<f:ajax render="formtabelle" />
+			</h:commandButton>
+			<h:commandButton value="weiter" action="#{kontaktctrl.weiter}"
+				styleClass="button">
+				<f:ajax render="formtabelle" />
+			</h:commandButton>
+		</h:panelGrid>
+	</div>
+
+	<hr />
+	<h:form id="inputform">
+		<h:panelGrid id="inputForm" columns="3">
+			<h:outputLabel value="Vorname" />
+			<h:inputText size="50" required="true" id="Vorname"
+				value="#{kontakt.vorname}">
+				<f:validateLength for="Vorname" maximum="50" />
+			</h:inputText>
+			<h:message for="Vorname" style="color:red" />
+			<h:outputLabel value="Nachname" />
+			<h:inputText size="50" required="true" id="Nachname"
+				value="#{kontakt.nachname}">
+				<f:validateLength for="Nachname" maximum="50" />
+			</h:inputText>
+			<h:message for="Nachname" style="color:red" />
+			<h:outputLabel value="Titel" />
+			<h:inputText size="10" required="false" id="Titel"
+				value="#{kontakt.titel}">
+				<f:validateLength for="Titel" maximum="10" />
+			</h:inputText>
+			<h:message for="Titel" style="color:red" />
+			<h:outputLabel value="Geburtsdatum" />
+			<h:inputText size="50" required="false" id="Geburtsdatum"
+				value="#{kontakt.geburtsdatum}">
+				<f:validateLength for="Geburtsdatum" maximum="50" />
+				<f:convertDateTime pattern="dd.MM.yyyy" />
+			</h:inputText>
+			<h:message for="Geburtsdatum" style="color:red" />
+			<h:outputLabel value="Strasse" />
+			<h:inputText size="50" required="false" id="Strasse"
+				value="#{kontakt.strasse}">
+				<f:validateLength for="Strasse" maximum="50" />
+			</h:inputText>
+			<h:message for="Strasse" style="color:red" />
+			<h:outputLabel value="PLZ" />
+			<h:inputText size="50" required="false" id="PLZ"
+				value="#{kontakt.plz}">
+				<f:validateLength for="PLZ" maximum="50" />
+			</h:inputText>
+			<h:message for="PLZ" style="red" />
+			<h:outputLabel value="Ort" />
+			<h:inputText size="50" required="false" id="Ort"
+				value="#{kontakt.ort}">
+				<f:validateLength for="Ort" maximum="50" />
+			</h:inputText>
+			<h:message for="Ort" style="color:red" />
+			<h:outputLabel value="Telefon" />
+			<h:inputText size="30" required="false" id="Telefon"
+				value="#{kontakt.telefon}">
+				<f:validateLength for="Telefon" maximum="30" />
+			</h:inputText>
+			<h:message for="Telefon" style="color:red" />
+			<h:outputLabel value="e-Mail" />
+			<h:inputText size="50" required="false" id="e-Mail"
+				value="#{kontakt.email}">
+				<f:validateLength for="e-Mail" maximum="50" />
+			</h:inputText>
+			<h:message for="e-Mail" style="color:red" />
+			<h:commandButton value="hinzufügen" action="#{kontakt.create}"
+				disabled="#{kontakt.edit}" styleClass="button" />
+			<h:commandButton id="btnaendern" value="ändern"
+				action="#{kontakt.update}" disabled="!#{kontakt.edit}"
+				styleClass="button" />
+			<h:commandButton value="reset" action="#{kontakt.reset}"
+				styleClass="button" />
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>

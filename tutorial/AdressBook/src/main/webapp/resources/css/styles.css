@@ -1,0 +1,51 @@
+body.body {
+	background-color: #e3e3e3;
+}
+
+div.divtabelle {
+	background-color: black;
+}
+
+th {
+	border: 1px solid black;
+	border-top: none;
+	border-spacing: 0px;
+	padding-left: 3px;
+	font-size: 14px;
+}
+
+tr.tabelleRowOdd {
+	background-color: white;
+}
+
+tr.tabelleRowEven {
+	background-color: #f0f0f0;
+}
+
+table#kontaktTabelle tr:hover {
+	background-color: gainsboro;
+}
+
+th.headerKontaktTabelle {
+	background-color: #aaaaaa;
+}
+
+input.button {
+	background-color: #808080; 
+	border: none;
+	color: white;
+	padding: 2px 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	margin: 2px 1px;
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+}
+
+input.button:hover {
+	box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.24), 0 10px 40px 0
+		rgba(0, 0, 0, 0.19);
+}
