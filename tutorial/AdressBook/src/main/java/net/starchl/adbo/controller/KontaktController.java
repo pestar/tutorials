@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import net.starchl.adbo.DbTool;
+import net.starchl.adbo.KontaktDaoImpl;
 import net.starchl.adbo.model.Kontakt;
 
 @ManagedBean(name = "kontaktctrl", eager = true)
@@ -17,7 +17,8 @@ import net.starchl.adbo.model.Kontakt;
 public class KontaktController {
 
 	protected static Logger log = Logger.getLogger("net.starchl.adbo.controller.KontaktController");
-	private DbTool db = new DbTool();
+	//private DbTool db = new DbTool();
+	private KontaktDaoImpl db=new KontaktDaoImpl();
 	private List<Kontakt> kontakte;
 	private int anzahlProSeite = 0, vonIndex, bisIndex;
 

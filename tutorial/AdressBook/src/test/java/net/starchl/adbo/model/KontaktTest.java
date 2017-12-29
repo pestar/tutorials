@@ -6,10 +6,12 @@ import org.junit.Test;
 
 import junit.framework.TestCase;
 import net.starchl.adbo.DbTool;
+import net.starchl.adbo.KontaktDaoImpl;
 
 public class KontaktTest extends TestCase {
 
-	private DbTool db = new DbTool();
+	//private DbTool db = new DbTool();
+	private KontaktDaoImpl db=new KontaktDaoImpl();
 	Kontakt k;
 
 	@Test
