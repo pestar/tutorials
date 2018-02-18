@@ -30,8 +30,18 @@ public class WetterController {
 		model.addAttribute("welcomedate", new java.util.Date());
 		model.addAttribute("searchland", new StringModel());
 		ModelAndView mv = new ModelAndView("/wetter");
-		List<String> stadtListe = service.getStadt("Iceland");
-		mv.addObject("list", stadtListe);
+		log.info("%%%%%%%%%% Aufruf Austria");
+		List<String> stadtListeAustria = service.getStadt("Austria");
+		log.info("%%%%%%%%%% Aufruf Iceland");
+		List<String> stadtListeIceland = service.getStadt("Iceland");
+		log.info("%%%%%%%%%% Aufruf Norway");
+		List<String> stadtListeNorway = service.getStadt("Norway");
+		log.info("%%%%%%%%%% Aufruf Sweden");
+		List<String> stadtListeSweden = service.getStadt("Sweden");
+		mv.addObject("listAustria", stadtListeAustria);
+		mv.addObject("listIceland", stadtListeIceland);
+		mv.addObject("listNorway", stadtListeNorway);
+		mv.addObject("listSweden", stadtListeSweden);
 		return mv;
 	}
 
