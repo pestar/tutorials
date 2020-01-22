@@ -8,7 +8,7 @@
 	<name>Another Address Book Application</name>
 
 	<properties>
-		<org.springframework.verson>5.0.2.RELEASE</org.springframework.verson>
+		<org.springframework.verson>5.2.3.RELEASE</org.springframework.verson>
 	</properties>
 	<dependencies>
 		<dependency>
